@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAY’s Website</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #001f3f, #002b55, #000814, #001a33);
+    background-size: 400% 400%;
+    color: white;
+    overflow-x: hidden;
+    animation: gradientBG 20s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: gold;
+    text-shadow: 0 0 20px gold, 0 0 40px gold;
+    margin-bottom: 20px;
+  }
+
+  .cursive {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 1.8rem;
+    color: #33ccff;
+    text-shadow: 0 0 10px #33ccff;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+
+  .nav-btn, .section button {
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 20px;
+    background: #1e90ff;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00bfff;
+    transition: 0.3s;
+  }
+
+  .nav-btn:hover, .section button:hover {
+    background: #00bfff;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #00ffff;
+  }
+
+  /* Floating sparkles / emojis */
+  .floating {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0% {transform: translateY(0) scale(1);}
+    50% {transform: translateY(-200px) scale(1.5);}
+    100% {transform: translateY(0) scale(1);}
+  }
+
+  #about, #dashboard { display: none; }
+
+  .section-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  textarea {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    resize: none;
+  }
+
+  .result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #ffd700;
+    text-shadow: 0 0 10px #ffd700;
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover Page -->
+<section id="cover">
+  <h1>Welcome to My Website</h1>
+  <p class="cursive">Why not scare them 👻</p>
+  <button class="nav-btn" onclick="showAbout()">Click Me</button>
+  <!-- Sparkles -->
+  <div id="cover-sparkles"></div>
+</section>
+
+<!-- About / Portfolio Section -->
+<section id="about">
+  <h1>JAY</h1>
+  <div class="section-content">
+    <h2>How I Thought of It</h2>
+    <p>I wanted to create a space where teens can feel okay being themselves without pressure from social media beauty standards.</p>
+    <h2>My Inspiration</h2>
+    <p>Creativity, self-expression, and spreading positive vibes inspired me to build this website.</p>
+    <h2>Reasons for Making the Website</h2>
+    <ul>
+      <li>To make teens feel comfortable in their skin 😎</li>
+      <li>Encourage creativity 🎨</li>
+      <li>Share fun, inspirational content ✨</li>
+    </ul>
+  </div>
+  <button class="nav-btn" onclick="showDashboard()">Go to Dashboard</button>
+  <button class="nav-btn" onclick="goBack()">⬅ Go Back</button>
+  <!-- Floating emojis -->
+  <div id="floating-about"></div>
+</section>
+
+<!-- Mini Portfolio Dashboard -->
+<section id="dashboard">
+  <h1>Mini Portfolio</h1>
+  <div>
+    <button class="nav-btn" onclick="showSection('games')">🎮 Games</button>
+    <button class="nav-btn" onclick="showSection('inspo')">✨ Inspo</button>
+    <button class="nav-btn" onclick="showSection('journaling')">📓 Journaling</button>
+    <button class="nav-btn" onclick="showSection('quiz')">📝 Quiz</button>
+    <button class="nav-btn" onclick="showSection('howtobeu')">💡 How to Be U</button>
+  </div>
+
+  <!-- Games Section -->
+  <div id="games" class="section">
+    <h2>🎮 Catch the Emoji!</h2>
+    <p>Click the moving ghost before it disappears!</p>
+    <div style="position:relative; height:200px;">
+      <span id="emoji" style="position:absolute; font-size:2rem; cursor:pointer;">👻</span>
+    </div>
+    <p id="score" class="result"></p>
+    <button onclick="resetGame()">Restart Game</button>
+    <button class="nav-btn" onclick="goBack()">⬅ Go Back</button>
+  </div>
+
+  <!-- Inspo Section -->
+  <div id="inspo" class="section">
+    <h2>✨ Inspiration</h2>
+    <ul>
+      <li>"You do you, everyone else is taken!" 😎</li>
+      <li>"Messy hair, don’t care — own it." 🖤</li>
+      <li>"Your creativity is your superpower." 🎨</li>
+      <li>"Main character energy, always." 🌟</li>
+    </ul>
+    <button class="nav-btn" onclick="goBack()">⬅ Go Back</button>
+  </div>
+
+  <!-- Journaling Section -->
+  <div id="journaling" class="section">
+    <h2>📓 Journaling</h2>
+    <p>Write your thoughts below:</p>
+    <textarea placeholder="Type your vibes here..."></textarea>
+    <button class="nav-btn" onclick="goBack()">⬅ Go Back</button>
+  </div>
+
+  <!-- Quiz Section -->
+  <div id="quiz" class="section">
+    <h2>📝 Quick Vibe Quiz</h2>
+    <div id="quiz-container">
+      <p id="question">Loading question...</p>
+      <div id="options"></div>
+      <p id="quiz-result" class="result"></p>
+    </div>
+    <button class="nav-btn" onclick="goBack()">⬅ Go Back</button>
+  </div>
+
+  <!-- How to Be U Section -->
+  <div id="howtobeu" class="section">
+    <h2>💡 How to Be U</h2>
+    <p>- Embrace your weirdness 😜</p>
+    <p>- Ignore social media pressure 💻</p>
+    <p>- Create what makes YOU happy 🎨</p>
+    <p>- Surround yourself with people who hype you up 💙</p>
+    <button class="nav-btn" onclick="goBack()">⬅ Go Back</button>
+  </div>
+</section>
+
+<script>
+  // Show About / Portfolio
+  function showAbout(){
+    document.getElementById('cover').style.display='none';
+    document.getElementById('about').style.display='block';
+  }
+
+  // Show Dashboard
+  function showDashboard(){
+    document.getElementById('about').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    showSection('games'); // default section
+  }
+
+  // Switch Dashboard sections
+  function showSection(id){
+    const sections = document.querySelectorAll('#dashboard .section');
+    sections.forEach(sec => sec.style.display='none');
+    document.getElementById(id).style.display='block';
+  }
+
+  // Go Back Button Logic
+  function goBack() {
+    // Dashboard -> About
+    if(document.getElementById('dashboard').style.display === 'block'){
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('about').style.display = 'block';
+    }
+    // About -> Cover
+    else if(document.getElementById('about').style.display === 'block'){
+      document.getElementById('about').style.display = 'none';
+      document.getElementById('cover').style.display = 'block';
+    }
+  }
+
+  // -------------------------
+  // Games logic
+  const emoji = document.getElementById('emoji');
+  const scoreEl = document.getElementById('score');
+  let score = 0;
+  function moveEmoji(){
+    const x = Math.random() * 90;
+    const y = Math.random() * 150;
+    emoji.style.left = x + '%';
+    emoji.style.top = y + 'px';
+  }
+  emoji.addEventListener('click', () => {
+    score++;
+    scoreEl.textContent = "Score: " + score;
+    moveEmoji();
+  });
+  function resetGame(){
+    score = 0;
+    scoreEl.textContent = "Score: 0";
+    moveEmoji();
+  }
+  resetGame();
+
+  // -------------------------
+  // Quiz logic
+  const quizData = [
+    {question: "What’s your vibe today?", options: ["💤 Sleepy", "😎 Chill", "🔥 Motivated", "🤡 Chaotic"]},
+    {question: "Pick a superpower:", options: ["Invisibility 👻", "Time travel ⏳", "Mind reading 🧠", "Teleportation ⚡"]},
+    {question: "Your playlist name would be:", options: ["‘Main Character Energy’ 🎬", "‘Cry then Slay’ 💅", "‘Just Vibes’ 🎧", "‘IDK but fire’ 🔥"]}
+  ];
+  let currentQ = 0;
+  const questionEl = document.getElementById('question');
+  const optionsEl = document.getElementById('options');
+  const quizResultEl = document.getElementById('quiz-result');
+  function loadQuestion(){
+    quizResultEl.textContent = '';
+    const q = quizData[currentQ];
+    questionEl.textContent = q.question;
+    optionsEl.innerHTML = '';
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-btn';
+      btn.textContent = opt;
+      btn.onclick = nextQuestion;
+      optionsEl.appendChild(btn);
+    });
+  }
+  function nextQuestion(){
+    currentQ++;
+    if(currentQ < quizData.length) loadQuestion();
+    else {
+      questionEl.textContent = "Quiz Complete ✅";
+      optionsEl.innerHTML = '';
+      const messages = ["You’re pure main character energy 💅","You’re chill but mysterious 👻","You’re a creative legend 🎨","You’re chaotic good 🔥"];
+      quizResultEl.textContent = messages[Math.floor(Math.random()*messages.length)];
+    }
+  }
+  loadQuestion();
+
+  // -------------------------
+  // Floating emojis on About page
+  const floatingAbout = document.getElementById('floating-about');
+  const emojis = ["👻","✨","🕷️"];
+  for(let i=0;i<20;i++){
+    const e = document.createElement('div');
+    e.className='floating';
+    e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left = Math.random()*90+'%';
+    e.style.top = Math.random()*80+'%';
+    e.style.animationDuration = (Math.random()*5 + 5)+'s';
+    floatingAbout.appendChild(e);
+  }
+
+  // -------------------------
+  // Cover sparkles
+  const coverSparkles = document.getElementById('cover-sparkles');
+  for(let i=0;i<30;i++){
+    const s = document.createElement('div');
+    s.className='floating';
+    s.style.width = s.style.height = (Math.random()*5 + 5) + 'px';
+    s.style.background='white';
+    s.style.left = Math.random()*100+'%';
+    s.style.top = Math.random()*100+'px';
+    s.style.animationDuration = (Math.random()*3 + 2)+'s';
+    coverSparkles.appendChild(s);
+  }
+
+</script>
+</body>
+</html>
